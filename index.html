@@ -1,13 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data:;">
     <title>Shadow's Portfolio</title>
-    <meta name="description" content="Portofolio Shadow, seorang web developer pemula yang berfokus pada CSS dan JavaScript.">
+    <meta name="description" content="Portofolio Shadow, web developer dengan pengalaman 2 tahun yang berfokus pada CSS dan JavaScript.">
     <meta name="keywords" content="web developer, CSS, JavaScript, portofolio, proyek">
+    <meta name="theme-color" content="#1a1a2e">
+    <link rel="canonical" href="https://shadowwd117.github.io/">
     <style>
+        /* CSS untuk screen readers */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Back to top button */
+        #back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(233, 69, 96, 0.8);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1001;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #back-to-top:hover {
+            background: rgba(233, 69, 96, 1);
+            transform: translateY(-3px);
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Tambahkan efek fade-in untuk section */
+        section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         /* Reset dan Gaya Dasar */
         * {
             margin: 0;
@@ -20,13 +83,12 @@
             line-height: 1.6;
             background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460, #0d7377);
             color: #fff;
-            overflow-y: scroll;
             text-align: center;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
             animation: fadeIn 1.2s ease-in-out forwards;
             justify-content: space-between;
+            user-select: none;
+            position: relative;
         }
 
         @keyframes fadeIn {
@@ -40,10 +102,10 @@
             }
         }
 
-        /* Styling header */
+        /* Pastikan header ada jarak dari navbar */
         header {
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.7);
+            padding: 60px 20px 20px;
+            background: rgba(10, 0, 30, 0.7);
             border-bottom: 2px solid #e94560;
         }
 
@@ -76,15 +138,23 @@
             border-radius: 50%;
             border: 3px solid #e94560;
             box-shadow: 0 0 15px #e94560;
-            margin: 20px auto;
-            margin-top: 100px;
+            margin: 30px auto 20px;
             overflow: hidden;
-            transition: transform 0.5s ease-in-out, box-shadow 0.5s ease;
+            transition: all 0.5s ease-out;
+            animation: float 2s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
         #pic:hover {
-            box-shadow: 0 0 20px #00d9f9;
-            transform: rotate(360deg) scale(1.1);
+            box-shadow: 0 0 50px #00d9f9;
         }
 
         #pic img {
@@ -101,6 +171,19 @@
 
         #intro span {
             color: orange;
+            animation: sp 5s ease-in-out infinite;
+        }
+        
+        @keyframes sp{
+            0%{
+                color: orange;
+            }
+            50%{
+                color: lightblue;
+            }
+            100%{
+                color: orange;
+            }
         }
 
         /* Styling bagian proyek */
@@ -118,7 +201,7 @@
             border: 1px solid #e94560;
             background: transparent;
             border-radius: 8px;
-            transition: transform 0.3s ease, background-color 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         #pro1:hover, #pro2:hover, #pro3:hover, #pro4:hover, #pro5:hover {
@@ -207,6 +290,7 @@
             color: #fff;
             font-size: 12px;
             box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+            margin-top: 30px;
         }
 
         #footer p:hover {
@@ -239,25 +323,25 @@
 
         #whatsapp {
             border-radius: 10px;
-            box-shadow: 0 0 5px 2px green;
             width: 200px;
-            color: lightgreen;
+            color: silver;
+            margin-top: 20px;
             height: 50px;
-            background-color: darkblue;
+            background-color: darkgreen;
             border: none;
-            transition: transform 0.3s ease, background-color 0.3s ease;
             margin-bottom: 20px;
+            transition: all 0.3s ease
         }
 
         #ggmail {
             border-radius: 10px;
-            box-shadow: 0 0 5px 2px silver;
             width: 200px;
             color: silver;
+            margin-top: 20px;
             height: 50px;
-            background-color: red;
+            background-color: darkred;
             border: none;
-            transition: transform 0.3s ease, background-color 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         button {
@@ -265,35 +349,131 @@
             letter-spacing: 1px;
         }
 
-        #whatsapp:hover, #ggmail:hover {
-            box-shadow: 0 0 20px 5px rgba(0, 217, 249, 0.7);
+        #ggmail:hover {
+            box-shadow: 0 0 20px 5px pink;
             color: white;
+            background-color: red;
+            transform: scale(1.05);;
+        }
+        
+        #whatsapp:hover {
+            box-shadow: 0 0 20px 5px lightgreen;
+            color: white;
+            background-color: #65C900;
+            transform: scale(1.05);
         }
 
-        #navbar {
+        /* Menu Button */
+        #menu-button {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            background: rgba(26, 26, 46, 0.9);
+            color: #00d9f9;
+            border: none;
+            border-radius: 5px;
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 10001;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        #menu-button:hover {
+            background: rgba(233, 69, 96, 0.8);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        /* Sidebar Modal */
+        #sidebar-modal {
             position: fixed;
             top: 0;
-            width: 100%;
-            background: rgba(26, 26, 46, 0.9);
-            color: #fff;
-            text-align: center;
-            padding: 10px 0;
-            z-index: 1000;
+            left: -300px;
+            width: 280px;
+            height: 100vh;
+            background: rgba(26, 26, 46, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 10002;
+            transition: left 0.3s ease;
+            box-shadow: 2px 0 15px rgba(0,0,0,0.3);
+            overflow-y: auto;
+            padding: 70px 20px 20px;
         }
 
-        #navbar a {
-            margin: 0 10px;
+        #sidebar-modal.open {
+            left: 0;
+        }
+
+        #sidebar-modal .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: #e94560;
+            font-size: 24px;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        #sidebar-modal .close-btn:hover {
+            background: rgba(233, 69, 96, 0.2);
+            transform: rotate(90deg);
+        }
+
+        #sidebar-modal nav {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        #sidebar-modal nav a {
             color: #00d9f9;
             text-decoration: none;
-            font-weight: thin;
-            font-size: 14px;
-            transition: 0.3s ease-in-out color 0.3s;
+            font-size: 16px;
+            padding: 12px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        #navbar a:hover {
+        #sidebar-modal nav a:hover {
+            background: rgba(255, 255, 255, 0.1);
             color: #e94560;
-            font-weight: bold;
-            text-decoration: underline;
+            transform: translateX(5px);
+        }
+
+        /* Overlay untuk modal */
+        #modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 10001;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        #modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
 
         .progress {
@@ -309,7 +489,7 @@
             height: 100%;
             width: 0%;
             background: #e94560;
-            animation: loading 3s infinite;
+            animation: loading 3s ease-in-out infinite;
         }
 
         @keyframes loading {
@@ -321,20 +501,11 @@
         #projek a {
             color: rgb(255,0,0);
         }
-        
-        #new li {
-            color: red;
-            transition: 0.3s ease;
-        }
-        
-        #new li:hover {
-            color: lightblue;
-            transform: scale(1.03);
-        }
 
         /* Styling untuk Testimoni */
         #testimoni {
             margin: 50px 0;
+            display: none;
         }
 
         .testimonial {
@@ -347,159 +518,570 @@
             width: 80%;
         }
         
-        #efsen{
-            width: 2px;
-            height: 2px;
+        #question {
+            background: rgba(26, 26, 46, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 30px;
+            color: #e0e0e0;
+            line-height: 1.7;
+            max-width: 800px;
+            margin: 50px auto;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            transition: 0.3s ease;
+        }
+
+        #question:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        #question h3 {
+            text-align: center;
+            color: #e94560;
+            margin-bottom: 25px;
+            font-size: 1.6em;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        #question dl {
+            margin: 0;
+            padding: 0;
+        }
+
+        #question dt {
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 1.05em;
+            margin-top: 20px;
+            transition: color 0.3s;
+        }
+
+        #question dd {
+            margin-left: 20px;
+            margin-top: 8px;
+            font-size: 0.95em;
+            color: #cfcfcf;
+            border-left: 3px solid #e94560;
+            padding-left: 15px;
+            transition: all 0.3s ease;
+        }
+
+        #question dt:hover {
+            color: #e94560;
+        }
+
+        #question dd:hover {
+            border-left-color: #ff6584;
+            color: #ffffff;
+        }
+
+        /* Tambahkan styling untuk form yang lebih baik */
+        #contactForm input:focus, 
+        #contactForm textarea:focus {
+            border-color: #e94560;
+            box-shadow: 0 0 8px rgba(233, 69, 96, 0.5);
+            outline: none;
+        }
+
+        #contactForm input:valid, 
+        #contactForm textarea:valid {
+            border-color: #0d7377;
+        }
+
+        #contactForm input:invalid:not(:focus):not(:placeholder-shown) {
+            border-color: #e94560;
+        }
+
+        /* Styling untuk light mode */
+        body.light-mode {
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            color: #333;
+        }
+
+        body.light-mode header {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        body.light-mode #nama {
+            color: #333;
+            text-shadow: 0 0 10px #e94560, 0 0 20px #e94560;
+        }
+
+        body.light-mode #pro1, 
+        body.light-mode #pro2, 
+        body.light-mode #pro3, 
+        body.light-mode #pro4, 
+        body.light-mode #pro5 {
+            border: 1px solid #0d7377;
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        body.light-mode #question {
+            background: rgba(255, 255, 255, 0.8);
+            color: #333;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        body.light-mode #footer {
+            background: linear-gradient(90deg, #c3cfe2, #f5f7fa);
+            color: #333;
+        }
+
+        /* Light mode untuk sidebar */
+        body.light-mode #sidebar-modal {
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        body.light-mode #sidebar-modal nav a {
+            color: #0d7377;
+        }
+
+        body.light-mode #sidebar-modal nav a:hover {
+            color: #e94560;
+        }
+
+        body.light-mode #menu-button {
+            background: rgba(255, 255, 255, 0.9);
+            color: #0d7377;
+        }
+
+        /* Loading screen */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10003;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(233, 69, 96, 0.3);
             border-radius: 50%;
-            opacity: 1;
-            
+            border-top-color: #e94560;
+            animation: spin 1s ease-in-out infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        #loading-text {
+            color: #fff;
+            font-size: 18px;
+        }
+
+        /* Custom alert styling */
+        .custom-alert {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 5px;
+            color: #fff;
+            z-index: 10004;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+        }
+
+        /* Styling untuk bagian pengalaman dan statistik */
+        #pengalaman {
+            margin: 50px 0;
+            padding: 20px;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            width: 200px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #e94560;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1em;
+            color: #00d9f9;
+        }
+
+        /* Styling untuk skill progress bars */
+        #skills {
+            margin: 50px 0;
+            padding: 20px;
+        }
+
+        .skill-item {
+            margin: 20px auto;
+            max-width: 600px;
+            text-align: left;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .skill-bar {
+            height: 10px;
+            background: #16213e;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            border-radius: 5px;
+            transition: width 1.5s ease-in-out;
+        }
+
+        .html-progress {
+            background: #e34c26;
+            width: 60%;
+        }
+
+        .css-progress {
+            background: #264de4;
+            width: 80%;
+        }
+
+        .js-progress {
+            background: #f0db4f;
+            width: 35%;
+        }
+
+        /* Perbaikan kontras untuk light mode */
+        body.light-mode .stat-item {
+            background: rgba(0, 0, 0, 0.05);
+            color: #333;
+        }
+
+        body.light-mode .stat-number {
+            color: #0d7377;
+        }
+
+        body.light-mode .stat-label {
+            color: #e94560;
+        }
+
+        body.light-mode .skill-bar {
+            background: #c3cfe2;
+        }
+
+        body.light-mode #intro span {
+            color: #0d7377;
+        }
+
+        body.light-mode #list-bidang li {
+            color: #0d7377;
+        }
+
+        body.light-mode #projek a {
+            color: #e94560;
+        }
+
+        body.light-mode .testimonial {
+            background: rgba(255, 255, 255, 0.8);
+            color: #333;
+        }
+
+        body.light-mode #question dt {
+            color: #333;
+        }
+
+        body.light-mode #question dd {
+            color: #555;
+        }
+
+        /* Ikon SVG untuk sidebar */
+        .icon {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
         }
     </style>
 </head>
 <body>
-    <header>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loader"></div>
+        <div id="loading-text">Memuat Portfolio...</div>
+    </div>
+    
+    <!-- Menu Button -->
+    <button id="menu-button" aria-label="Buka menu navigasi">☰</button>
+    
+    <!-- Sidebar Modal -->
+    <div id="sidebar-modal">
+        <button class="close-btn" aria-label="Tutup menu">×</button>
+        <nav role="navigation" aria-label="Navigasi utama">
+            <a href="#pengalaman">
+                <svg class="icon">
+                    <use xlink:href="icons.svg#experience-information-knowledge"></use>
+                </svg>
+                Pengalaman
+            </a>
+            <a href="#skills">
+                <svg class="icon">
+                    <use xlink:href="icons.svg#skill-requirement"></use>
+                </svg>
+                Keahlian
+            </a>
+            <a href="#projek">
+                <svg class="icon">
+                    <use xlink:href="icons.svg#project-configuration"></use>
+                </svg>
+                Proyek
+            </a>
+            <a href="#non-coding">
+                <svg class="icon">
+                    <use xlink:href="icons.svg#coding-monitor"></use>
+                </svg>
+                Non-Coding
+            </a>
+            <a href="#kontak">
+                <svg class="icon">
+                    <use xlink:href="icons.svg#contact-business-card"></use>
+                </svg>
+                Kontak
+            </a>
+            <a id="fullscreenArea">
+                <svg class="icon">
+                    <use xlink:href="icons.svg#fullscreen"></use>
+                </svg>
+                Fullscreen
+            </a>
+            <a id="theme-toggle">
+                <svg class="icon">
+                    <use xlink:href="icons.svg#switch-double"></use>
+                </svg>
+                <span id="theme-text">Night Mode</span>
+            </a>
+        </nav>
+    </div>
+    
+    <!-- Modal Overlay -->
+    <div id="modal-overlay"></div>
+
+    <header role="banner">
         <div id="pic">
-            <img src="porto.png" alt="Foto Profil" loading="lazy">
+            <img src="porto.png" alt="Foto Profil Shadow" loading="lazy">
         </div>
         <h1 id="nama"></h1>
         <h2 id="bidang">CSS <span>and</span> JAVASCRIPT WEB DEVELOPER</h2>
     </header>
     <hr>
-    <section id="intro">
-        <p>Hai! Saya adalah <span>SHADOW</span>, seorang <span>WEB DEVELOPER</span> pemula yang berfokus pada bahasa pemrograman <span>CSS</span> dan <span>JavaScript</span>, mengutamakan <span>tampilan menarik</span>, <span>responsif</span>, dan <span>interaktif.</span></p>
-        <p>Saya mulai tertarik pada pemprograman website ketika saya <span>menelusuri website di google</span>. Dan berpikir untuk mulai mencoba pemprograman. Dan saya memulai dengan <span>CSS dan Javascript</span>.</p>
-        <p>Saya menggunakan perangkat <span>Android</span> dalam membangun sebuah website. Terdapat banyak sekali <span>tantangan</span> dalam membangun sebuah website, mulai dari masalah <span>LICENSE</span> di repository github hingga kendala dalam penulisan <span>LOGIKA</span>.</p>
-    </section>
-
-    <section id="projek">
-        <h3>PROYEK SAYA</h3>
-        <article id="pro1">
-            <h4>PORTOFOLIO</h4>
-            <p>Portofolio ini adalah salah satu proyek saya dalam penerapan bahasa pemrograman web.</p>
-        </article>
-        <article id="pro2">
-            <h4>GAME</h4>
-            <p>Saya membangun game bergenre horor dengan gameplay visual novel, berjalan di website.</p>
-            <a href="https://shadowwd117.github.io/AloneAtHome/" target="_blank" rel="noopener noreferrer">Alone At Home</a><br>
-            <a href="https://shadowwd117.github.io/SoulVeil/" target="_blank" rel="noopener noreferrer">Soul Veil</a>
-        </article>
-        <article id="pro3">
-            <h4>TATA SURYA</h4>
-            <p>Saya membuat visual dari sistem tata surya dengan mekanisme penjelasan untuk setiap objek apabila disentuh.</p>
-            <a href="https://shadowwd117.github.io/Solar/" target="_blank" rel="noopener noreferrer">Lihat Proyek</a>
-        </article>
-        <article id="pro4">
-            <h4>KARTU UCAPAN</h4>
-            <p>Saya membuat kartu ucapan untuk hari-hari atau orang yang spesial.</p>
-            <a href="https://shadowwd117.github.io/NewYear/" target="_blank" rel="noopener noreferrer">New Year Card 1</a>
-            <br>
-            <a href="https://shadowwd117.github.io/NewYare/" target="_blank" rel="noopener noreferrer">New Year Card 2</a>
-        </article>
-        
-        <article id="pro5">
-            <h4>KONTEN RANDOM</h4>
-            <p>Saya membangun berbagai konten acak yang bersifat menghibur dan mengisi waktu kosong pengunjung.</p> 
-            <a href="https://shadowwd117.github.io/Particle/" target="_blank" rel="noopener noreferrer">Particle</a>
-            <a href="https://shadowwd117.github.io/Cintipede/" target="_blank" rel="noopener noreferrer">Centipede</a>
-        </article>
-        
-        <article id="question">
-            <h3>Q and A</h3>
-            <h5>Q: Apakah kamu membuka jasa pembuatan website?</h5>
-            <h5>A: Untuk saat ini saya masih fokus dalam pengembangan dan memperdalam kepahaman di bidang ini. Jasa pembuatan website mungkin akan saya terapkan apabila skill dan pemahaman saya telah mencukupi.</h5>
-            <h5>Q: Bagaimana jika saya ingin agar anda membuatkan saya sebuah website?</h5>
-            <h5>A: Saya bisa membuatkan anda beberapa model website seperti, game visual novel singkat, kartu ucapan, dan konten-konten website yang bersifat menghibur pengguna/pengunjung.</h5>
-            <h5>Q: Apa yang harus saya lakukan jika menemukan kesalahan pada project anda?</h5>
-            <h5>A: Anda dapat melaporkan masalah atau kendala dalam project saya dengan menghubungi saya secara langsung melalui GMAIL dan WHATSAPP. Saya dengan senang hati menerima keluhan anda.</h5>
-            <h5>Q: Apakah pembaruan kali ini sudah sempurna?</h5>
-            <h5>A: Ini adalah pembaruan saya untuk pertama kali. Mungkin masih banyak perbaikan dan penambahan konten baru yang akan saya lakukan untuk memberikan pengalaman terbaik pada pengguna.</h5>
-        </article>
-        
-    </section>
-
-    <section id="non-coding">
-        <h3>BIDANG NON-CODING</h3>
-        <div id="list-bidang">
-            <ul>
-                <li>Desain Grafis (pemula)</li>
-                <li>Video Editing (berpengalaman)</li>
-                <li>3D animation (berpengalaman)</li>
-                <li>2D animation (berpengalaman)</li>
-                <li>Penetration testing (pemula)</li>
-                <li>Desain presentasi (pemula)</li>
-            </ul>
-        </div>
-    </section>
     
-    <section id="new">
-        <h3>Apa Yang Baru?</h3>
-        <div id="list-bidang">
-            <ul>
-                <li>~ Mode Fullscreen</li>
-                <li>~ Konten Baru 
-                    <ul>
-                        <li>+ Soul Veil</li>
-                        <li>+ New Year Card 1</li>
-                        <li>+ New Year Card 2</li>
-                        <li>
-                            + Particle
-                        </li>
-                        <li>Centipede</li>
-                    </ul>
-                </li>
-                <li>~ Tampilan baru</li>
-                <li>~ Perbaikan penulisan</li>
-                <li>~ Efek animasi baru</li>
-            </ul>
-        </div>
-    </section>
-    <hr>
-    
-    <section id="testimoni">
-        <h3>Testimoni Klien</h3>
-        <div class="testimonial fade-in">
-            <p>"Testimoni"</p>
-            <p>- Klien A</p>
-        </div>
-        <div class="testimonial fade-in">
-            <p>"Segera Hadir!"</p>
-            <p>- Klien B</p>
-        </div>
-    </section>
+    <main role="main">
+        <section id="intro">
+            <p>Hai! Saya <span>SHADOW</span>, seorang <span>WEB DEVELOPER</span> dengan pengalaman belajar 2 tahun yang berfokus pada bahasa pemrograman <span>CSS</span> dan <span>JavaScript</span>, mengutamakan <span>tampilan menarik</span>, <span>responsif</span>, dan <span>interaktif.</span></p>
+            <p>Saya telah mengembangkan berbagai proyek web selama 2 tahun terakhir, dengan fokus pada pengalaman pengguna yang optimal dan implementasi desain yang kreatif.</p>
+            <p>Saya menggunakan perangkat <span>Android</span> dalam membangun website, membuktikan bahwa keterbatasan perangkat bukan penghalang untuk menghasilkan karya berkualitas.</p>
+        </section>
 
-    <section id="kontak">
-        <h3>Memiliki ide, saran atau keluhan,<br>lapor bug? Hubungi Saya</h3>
-        <button id="whatsapp" type="button" onclick="openLink('https://wa.me/+6281323064408')">WhatsApp</button>
-        <button id="ggmail" type="button" onclick="openLink('mailto:shadowwebdev117@gmail.com')">Gmail</button>
-    </section>
+        <section id="pengalaman">
+            <h3>PENGALAMAN & PENCAPAIAN</h3>
+            <div class="stats-container">
+                <div class="stat-item">
+                    <span class="stat-number">2+</span>
+                    <span class="stat-label">Tahun Pengalaman</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">10+</span>
+                    <span class="stat-label">Repositori GitHub</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">5+</span>
+                    <span class="stat-label">Proyek Mandiri</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">20+</span>
+                    <span class="stat-label">Latihan Mandiri</span>
+                </div>
+            </div>
+        </section>
 
-    <section id="kontak">
-        <h3>Berikan Saran</h3>
-        <form id="contactForm" onsubmit="return kirimPesan();">
-            <input type="text" id="namaPengguna" placeholder="Nama Anda" required>
-            <input type="email" id="emailPengguna" placeholder="Email Anda" required>
-            <textarea id="pesanPengguna" placeholder="Pesan Anda"></textarea>
-            <button type="submit">Kirim</button>
-        </form>
-    </section>
+        <section id="skills">
+            <h3>KEAHLIAN TEKNIS</h3>
+            <div class="skill-item">
+                <div class="skill-name">
+                    <span>HTML</span>
+                    <span>60%</span>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-progress html-progress"></div>
+                </div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">
+                    <span>CSS</span>
+                    <span>80%</span>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-progress css-progress"></div>
+                </div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">
+                    <span>JavaScript</span>
+                    <span>35%</span>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-progress js-progress"></div>
+                </div>
+            </div>
+        </section>
 
-    <nav id="navbar">
-        <a href="#pic">Tentang</a>
-        <a href="#bidang">Proyek</a>
-        <a href="#pro4">Non-Coding</a>
-        <a href="#kontak">Kontak</a>
-        <a id="fullscreenArea">Fullscreen</a>
-    </nav>
+        <section id="projek">
+            <h3>PROYEK SAYA</h3>
+            <article id="pro1">
+                <h4>PORTOFOLIO</h4>
+                <p>Portofolio ini adalah salah satu proyek saya dalam penerapan bahasa pemrograman web dengan desain yang responsif dan modern.</p>
+            </article>
+            <article id="pro2">
+                <h4>GAME</h4>
+                <p>Saya membangun game bergenre horor dengan gameplay visual novel, berjalan di website dengan implementasi JavaScript untuk interaktivitas.</p>
+                <a href="https://shadowwd117.github.io/AloneAtHome/" target="_blank" rel="noopener noreferrer">Alone At Home</a><br>
+                <a href="https://shadowwd117.github.io/SoulVeil/" target="_blank" rel="noopener noreferrer">Soul Veil</a>
+            </article>
+            <article id="pro3">
+                <h4>TATA SURYA</h4>
+                <p>Saya membuat visual dari sistem tata surya dengan mekanisme penjelasan untuk setiap objek apabila disentuh, menggunakan CSS animations dan JavaScript.</p>
+                <a href="https://shadowwd117.github.io/Solar/" target="_blank" rel="noopener noreferrer">Lihat Proyek</a>
+            </article>
+            <article id="pro4">
+                <h4>KARTU UCAPAN</h4>
+                <p>Saya membuat kartu ucapan untuk hari-hari atau orang yang spesial dengan animasi CSS yang menarik.</p>
+                <a href="https://shadowwd117.github.io/NewYear/" target="_blank" rel="noopener noreferrer">New Year Card 1</a>
+                <br>
+                <a href="https://shadowwd117.github.io/NewYare/" target="_blank" rel="noopener noreferrer">New Year Card 2</a>
+            </article>
+            
+            <article id="pro5">
+                <h4>KONTEN RANDOM</h4>
+                <p>Saya membangun berbagai konten acak yang bersifat menghibur dan mengisi waktu kosong pengunjung dengan implementasi JavaScript.</p> 
+                <a href="https://shadowwd117.github.io/Particle/" target="_blank" rel="noopener noreferrer">Particle</a><br>
+                <a href="https://shadowwd117.github.io/Cintipede/" target="_blank" rel="noopener noreferrer">Centipede</a>
+            </article>
+            
+            <article id="question">
+                <h3>Q&A — Pertanyaan Umum</h3>
+                <dl>
+                    <dt>Q: Apakah kamu sudah membuka layanan pembuatan website?</dt>
+                    <dd>A: Saat ini saya belum secara resmi membuka layanan tersebut. Saya sedang memfokuskan waktu untuk memperdalam keahlian di bidang web development dan membangun portofolio pribadi. Namun, ke depannya saya berencana menawarkan jasa pembuatan website ketika kualitas dan standar kerja saya sudah mencapai level profesional.</dd>
 
-    <div class="progress">
-        <div class="progress-bar"></div>
-    </div>
+                    <dt>Q: Apakah kamu bisa membantu membuat website sederhana untuk kebutuhan pribadi atau proyek kecil?</dt>
+                    <dd>A: Ya, saya dapat membantu membuat website ringan seperti halaman kartu ucapan interaktif, mini game berbasis web, atau proyek dengan elemen visual novel. Tujuannya adalah memberikan pengalaman pengguna yang menarik dan interaktif.</dd>
 
-    <footer id="footer">
+                    <dt>Q: Bagaimana cara melaporkan bug atau kesalahan pada project yang kamu buat?</dt>
+                    <dd>A: Anda dapat menghubungi saya langsung melalui email atau WhatsApp untuk menyampaikan laporan bug, saran, atau masukan lainnya. Setiap umpan balik dari pengguna sangat berarti bagi saya dalam memperbaiki dan meningkatkan kualitas project ke depannya.</dd>
+
+                    <dt>Q: Apakah versi pembaruan saat ini sudah final?</dt>
+                    <dd>A: Belum. Versi ini masih dalam tahap pengembangan aktif. Saya terus melakukan evaluasi, penyempurnaan, dan penambahan fitur baru agar aplikasi dapat memberikan pengalaman terbaik bagi pengguna.</dd>
+                </dl>
+            </article>
+        </section>
+
+        <section id="non-coding">
+            <h3>BIDANG NON-CODING</h3>
+            <div id="list-bidang">
+                <ul>
+                    <li>Desain Grafis (pemula)</li>
+                    <li>Video Editing (berpengalaman)</li>
+                    <li>3D animation (berpengalaman)</li>
+                    <li>2D animation (berpengalaman)</li>
+                    <li>Penetration testing (pemula)</li>
+                    <li>Desain presentasi (pemula)</li>
+                </ul>
+            </div>
+        </section>
+        
+        <hr>
+        
+        <section id="testimoni">
+            <h3>Testimoni Klien</h3>
+            <div class="testimonial fade-in">
+                <p>"Shadow memiliki kemampuan CSS yang sangat baik, desain yang dihasilkan selalu responsif dan menarik."</p>
+                <p>- Klien A</p>
+            </div>
+            <div class="testimonial fade-in">
+                <p>"Pengerjaan proyek tepat waktu dan komunikasi yang baik selama proses development."</p>
+                <p>- Klien B</p>
+            </div>
+        </section>
+
+        <section id="kontak">
+            <h3>Memiliki ide, saran atau keluhan,<br>lapor bug? Hubungi Saya</h3>
+            <button id="whatsapp" type="button" onclick="openLink('https://wa.me/+6281323064408')">WhatsApp</button>
+            <button id="ggmail" type="button" onclick="openLink('mailto:shadowwebdev117@gmail.com')">Gmail</button>
+        </section>
+
+        <section id="kontak">
+            <h3>Berikan Saran</h3>
+            <form id="contactForm" onsubmit="return kirimPesan();" aria-label="Formulir kontak">
+                <label for="namaPengguna" class="sr-only">Nama Anda</label>
+                <input type="text" id="namaPengguna" placeholder="Nama Anda" required aria-required="true">
+                
+                <label for="emailPengguna" class="sr-only">Email Anda</label>
+                <input type="email" id="emailPengguna" placeholder="Email Anda" required aria-required="true">
+                
+                <label for="pesanPengguna" class="sr-only">Pesan Anda</label>
+                <textarea id="pesanPengguna" placeholder="Pesan Anda" required aria-required="true"></textarea>
+                
+                <button type="submit">Kirim</button>
+            </form>
+        </section>
+    </main>
+
+    <footer id="footer" role="contentinfo">
         <p>&copy; 2025 Shadow. Semua Hak Dilindungi.</p>
     </footer>
+    
+    <!-- Back to top button -->
+    <button id="back-to-top" title="Kembali ke atas">↑</button>
 
     <script>
+        // Fungsi untuk menghilangkan loading screen
+        window.addEventListener('load', function() {
+            const loadingScreen = document.getElementById('loading-screen');
+            setTimeout(() => {
+                loadingScreen.style.opacity = '0';
+                setTimeout(() => loadingScreen.remove(), 300);
+            }, 800);
+        });
+
         const nama = document.getElementById("nama");
         const text = "SHADOW";
         let i = 0;
@@ -516,65 +1098,211 @@
             window.open(url, "_blank", "noopener,noreferrer");
         }
 
-        function kirimPesan() {
-            const nama = document.getElementById('namaPengguna').value;
-            const email = document.getElementById('emailPengguna').value;
-            const pesan = document.getElementById('pesanPengguna').value;
+        // Fungsi untuk toggle dark/light mode
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeText = document.getElementById('theme-text');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
 
-            if (!nama || !email || !pesan) {
-                alert("Harap isi semua kolom sebelum mengirim pesan!");
-                return false;
-            }
+        // Cek preferensi sistem atau localStorage
+        const currentTheme = localStorage.getItem('theme') || 
+            (prefersDarkScheme.matches ? 'dark' : 'light');
 
-            const subject = `Pesan dari ${nama}`;
-            const body = `Nama: ${nama} Email: ${email} Pesan: ${pesan}`;
-            const mailtoLink = `mailto:shadowwebdev117@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-            window.location.href = mailtoLink;
-            return false;
+        if (currentTheme === 'light') {
+            document.body.classList.add('light-mode');
+            themeText.textContent = 'Light Mode';
+        } else {
+            themeText.textContent = 'Night Mode';
         }
 
-        typingEffect();
-        
-        const fullscreenArea = document.getElementById("fullscreenArea");
+        themeToggle.addEventListener('click', function() {
+            if (document.body.classList.contains('light-mode')) {
+                document.body.classList.remove('light-mode');
+                localStorage.setItem('theme', 'dark');
+                themeText.textContent = 'Night Mode';
+            } else {
+                document.body.classList.add('light-mode');
+                localStorage.setItem('theme', 'light');
+                themeText.textContent = 'Light Mode';
+            }
+        });
 
-        fullscreenArea.addEventListener("click", () => {
+        // Sidebar Modal Functionality
+        const menuButton = document.getElementById('menu-button');
+        const sidebarModal = document.getElementById('sidebar-modal');
+        const modalOverlay = document.getElementById('modal-overlay');
+        const closeButton = document.querySelector('.close-btn');
+
+        function openSidebar() {
+            sidebarModal.classList.add('open');
+            modalOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSidebar() {
+            sidebarModal.classList.remove('open');
+            modalOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        menuButton.addEventListener('click', openSidebar);
+        closeButton.addEventListener('click', closeSidebar);
+        modalOverlay.addEventListener('click', closeSidebar);
+
+        // Handle sidebar navigation
+        document.querySelectorAll('#sidebar-modal nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if(this.getAttribute('href') && this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if(targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                        closeSidebar();
+                    }
+                }
+            });
+        });
+
+        // Handle fullscreen and theme toggle in sidebar
+        document.querySelector('#sidebar-modal #fullscreenArea').addEventListener('click', function(e) {
+            e.preventDefault();
             if (!document.fullscreenElement) {
                 document.documentElement.requestFullscreen();
             } else {
                 document.exitFullscreen();
             }
+            closeSidebar();
         });
 
-        fullscreenArea.addEventListener("touchstart", (e) => {
-            if (e.touches.length === 1) { // Deteksi tap
-                if (!document.fullscreenElement) {
-                    document.documentElement.requestFullscreen();
-                } else {
-                    document.exitFullscreen();
-                }
+        // Back to top functionality
+        const backToTopButton = document.getElementById('back-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
             }
         });
-        
-        // Array teks untuk placeholder
-        const placeholderTexts = [
-            "masukkan nama", "shadow (contoh)"
-        ];
 
-        let currentIndex = 0; // Indeks teks saat ini
-        const inputElement = document.getElementById("namaPengguna");
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
 
-        // Fungsi untuk mengubah teks placeholder
-        function changePlaceholder() {
-            inputElement.setAttribute("placeholder", placeholderTexts[currentIndex]);
-            currentIndex = (currentIndex + 1) % placeholderTexts.length; // Pergantian teks (loop)
+        // Intersection Observer untuk animasi scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Terapkan observer ke semua section
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Perbaiki fungsi kirimPesan dengan validasi yang lebih baik
+        function kirimPesan() {
+            const nama = document.getElementById('namaPengguna').value.trim();
+            const email = document.getElementById('emailPengguna').value.trim();
+            const pesan = document.getElementById('pesanPengguna').value.trim();
+
+            // Validasi
+            if (!nama) {
+                showAlert('Harap isi nama Anda!', 'error');
+                document.getElementById('namaPengguna').focus();
+                return false;
+            }
+
+            if (!email) {
+                showAlert('Harap isi email Anda!', 'error');
+                document.getElementById('emailPengguna').focus();
+                return false;
+            }
+
+            if (!isValidEmail(email)) {
+                showAlert('Format email tidak valid!', 'error');
+                document.getElementById('emailPengguna').focus();
+                return false;
+            }
+
+            if (!pesan) {
+                showAlert('Harap isi pesan Anda!', 'error');
+                document.getElementById('pesanPengguna').focus();
+                return false;
+            }
+
+            // Jika semua validasi lolos
+            const subject = `Pesan dari ${nama}`;
+            const body = `Nama: ${nama}%0D%0AEmail: ${email}%0D%0A%0D%0APesan:%0D%0A${pesan}`;
+            const mailtoLink = `mailto:shadowwebdev117@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+
+            window.location.href = mailtoLink;
+            showAlert('Pesan berhasil dikirim!', 'success');
+            return false;
         }
 
-        // Interval untuk mengganti teks setiap 2 detik
-        setInterval(changePlaceholder, 2000);
+        // Fungsi validasi email
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
 
-        // Mulai dengan teks pertama
-        changePlaceholder();
+        // Fungsi untuk menampilkan alert kustom
+        function showAlert(message, type) {
+            // Hapus alert sebelumnya jika ada
+            const existingAlert = document.querySelector('.custom-alert');
+            if (existingAlert) {
+                existingAlert.remove();
+            }
+
+            // Buat elemen alert baru
+            const alert = document.createElement('div');
+            alert.className = `custom-alert ${type}`;
+            alert.textContent = message;
+            
+            // Styling untuk alert
+            alert.style.position = 'fixed';
+            alert.style.top = '20px';
+            alert.style.right = '20px';
+            alert.style.padding = '15px 20px';
+            alert.style.borderRadius = '5px';
+            alert.style.color = '#fff';
+            alert.style.zIndex = '10000';
+            alert.style.fontWeight = 'bold';
+            alert.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+            alert.style.transition = 'all 0.3s ease';
+            
+            if (type === 'error') {
+                alert.style.background = '#e94560';
+            } else {
+                alert.style.background = '#0d7377';
+            }
+            
+            document.body.appendChild(alert);
+            
+            // Hilangkan alert setelah 3 detik
+            setTimeout(() => {
+                alert.style.opacity = '0';
+                setTimeout(() => {
+                    if (alert.parentNode) {
+                        alert.parentNode.removeChild(alert);
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        typingEffect();
 
         // Menambahkan efek slider untuk testimoni
         let currentTestimonial = 0;
